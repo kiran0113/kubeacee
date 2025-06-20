@@ -38,4 +38,4 @@ jobs:
           script: |
             docker pull kiranyn/node:${{ github.sha }}
             docker stop node || true && docker rm node || true
-            docker run -d --name node -p 3000:3000 kiranyn/node:${{ github.sha }}
+            docker run -d --name node -p 3000:80 kiranyn/node:${{ github.sha }}
