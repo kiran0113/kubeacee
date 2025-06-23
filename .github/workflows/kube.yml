@@ -26,7 +26,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: kiranyn/node:${{ github.sha }}
+          tags: kiranyn/demo1:${{ github.sha }}
 
       - name: Deploy to DigitalOcean Droplet via SSH
         uses: appleboy/ssh-action@v1.0.0
@@ -35,6 +35,6 @@ jobs:
           username: ${{ secrets.DROPLET_USER }}
           key: ${{ secrets.DROPLET_SSH_KEY }}
           script: |
-            docker pull kiranyn/node:${{ github.sha }}
-            docker stop node || true && docker rm node || true
-            docker run -d --name node -p 3000:80 kiranyn/node:${{ github.sha }}
+            docker pull kiranyn/demo1:${{ github.sha }}
+            docker stop demo1 || true && docker rm demo1 || true
+            docker run -d --name demo1 -p 3000:80 kiranyn/demo1:${{ github.sha }}
